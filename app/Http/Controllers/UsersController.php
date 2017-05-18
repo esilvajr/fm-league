@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\Repositories\UserRepository;
 
+/**
+ * @resource Users
+ *
+ * Provides info about users
+ */
 class UsersController
 {
 

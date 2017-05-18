@@ -13,10 +13,26 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+//Route::get('/user', function (Request $request) {
+//    return $request->user();
+//})->middleware('auth:api');
 
-Route::get('/users', '\App\Http\Controllers\UsersController@index');
-Route::get('/users/{id}', '\App\Http\Controllers\UsersController@show');
-Route::post('/users', '\App\Http\Controllers\UsersController@store');
+Route::group(['prefix' => 'v1'], function(){
+
+    /*
+     * Users
+     */
+    Route::resource('/users', '\App\Http\Controllers\UsersController', ['only' => [
+            'index', 'show', 'store'
+        ]
+    ]);
+
+    /*
+     * Teams
+     */
+    Route::resource('/teams', '\App\Http\Controllers\Api\V1\TeamsController', ['only' => [
+            'index', 'show', 'store'
+        ]
+    ]);
+
+});

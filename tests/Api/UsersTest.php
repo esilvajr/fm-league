@@ -13,7 +13,7 @@ class UsersTest extends TestCase
      */
     public function testUsersGet()
     {
-        $this->get('/api/users')
+        $this->get('/api/v1/users', ['Content-Type' => 'application/json', 'Accept' => 'application/json'])
              ->seeJsonStructure([
                  '*' => [
                      'id',
